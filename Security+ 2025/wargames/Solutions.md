@@ -7,6 +7,7 @@ By SSH'ing into the first game room using the provided username bandit0 and pass
 
 **Output:**
 
+The image below should show
 ![](Pasted%20image%2020251015184937.png)
 
 
