@@ -1,4 +1,36 @@
-8. The password for the next level is stored in the file **data.txt** and is the only line of text that occurs only once
+
+0. The goal of this level is for you to log into the game using `SSH`. The host to which you need to connect is **bandit.labs.overthewire.org**, on port **2220**. The username is **bandit0** and the password is **bandit0**. 
+
+**Solution:**
+
+By SSH'ing into the first game room using the provided username bandit0 and password bandit0, we are granted access.
+
+**Output:**
+
+![](Pasted%20image%2020251015184937.png)
+
+
+
+![[Pasted image 20251015170242.png]]
+This room automatically puts us into room 1 after logging in.
+
+---
+0. The password for the next level is stored in a file called readme located in the home directory.
+
+**Solution:**
+
+By typing the`ls`command, we can see one file in our directory named "readme". We can use cat to read the contents of this file.
+
+**Output:**
+
+![[Pasted image 20251015171657.png]]
+
+--- 
+
+2. 
+
+---
+8. The password for the next level is stored in the file **data.txt** and is the only line of text that occurs only once.
 
 **Solution:**
 
