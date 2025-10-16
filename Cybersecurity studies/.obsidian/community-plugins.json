@@ -4,5 +4,7 @@
   "obsidian-icon-folder",
   "automatic-table-of-contents",
   "obsidian-file-info-plugin",
-  "templater-obsidian"
+  "templater-obsidian",
+  "oz-image-plugin",
+  "obsidian-paste-image-rename"
 ]

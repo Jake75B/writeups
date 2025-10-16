@@ -29,9 +29,9 @@
 [Obsidian](https://obsidian.md) → `[Obsidian](https://obsidian.md)`
 
 ## Images / Diagrams
-![[../wargames/Wargames attachments/image 2.png]] → Embed image in vault  
-![[../wargames/Wargames attachments/image 2.png|200]] → Resize width to 200px  
-![[diagram.excalidraw|300]] → Resize diagram
+![](Wargames attachments/${1}) → Embed image in vault  
+![](Wargames attachments/${1}) → Resize width to 200px  
+![](Wargames attachments/${1}) → Resize diagram
 
 ## Code
 Inline code: `` `code` ``  

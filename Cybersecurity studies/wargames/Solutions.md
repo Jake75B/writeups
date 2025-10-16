@@ -6,18 +6,19 @@
 By SSH'ing into the first game room using the provided username bandit0 and password bandit0, we are granted access.
 
 **Output:**
-ee
-The image below should show
-![](Wargames%20attachments/image%202.png)
 
+The image below should show
+
+![](attachments/image%202.png)
+![](../Pasted%20image%2020251016181230.png)
 
 
 This image below should show too!
 
-![](Wargames%20attachments/Pasted%20image%2020251016165748.png)
+![](../Solutions-16.10.25.png)
 
 
-![[Wargames attachments/Pasted image 20251015170242.png]]
+![[attachments/Pasted image 20251015170242.png]]
 This room automatically puts us into room 1 after logging in.
 
 ---
@@ -29,7 +30,7 @@ By typing the`ls`command, we can see one file in our directory named "readme". W
 
 **Output:**
 
-![[Wargames attachments/Pasted image 20251015171657.png]]
+![[attachments/Pasted image 20251015171657.png]]
 
 --- 
 
@@ -49,7 +50,7 @@ uniq -u: keeps only lines that occur once originally
 
 **Output:**
 
-![[Wargames attachments/Pasted image 20250828163404.png]]
+![[attachments/Pasted image 20250828163404.png]]
 
 --- 
 
@@ -66,7 +67,7 @@ uniq -u: keeps only lines that occur once originally
 
 As you can see, the password for the next room is split between the last and second last line.
 
-![[Wargames attachments/Pasted image 20250828163149.png]]
+![[attachments/Pasted image 20250828163149.png]]
 
 ---
 
@@ -79,7 +80,7 @@ As you can see, the password for the next room is split between the last and sec
 
 **Output**
 
-![[Wargames attachments/Pasted image 20250828164905.png|800]]
+![[attachments/Pasted image 20250828164905.png|800]]
 
 --- 
 
@@ -98,9 +99,9 @@ requiring a rotation by 13 positions. To get around this, we can use the `tr` (t
 
 **Output**
 
-![[Wargames attachments/Pasted image 20250902003124.png|500]]
+![[attachments/Pasted image 20250902003124.png|500]]
 
-![[Wargames attachments/Pasted image 20250902003104.png]]
+![[attachments/Pasted image 20250902003104.png]]
 
 --- 
 12. The password for the next level is stored in the file **data.txt**, which is a hexdump of a file that has been repeatedly compressed. For this level it may be useful to create a directory under /tmp in which you can work. Use mkdir with a hard to guess directory name. Or better, use the command “mktemp -d”. Then copy the datafile using cp, and rename it using mv (read the manpages!)
@@ -109,45 +110,45 @@ requiring a rotation by 13 positions. To get around this, we can use the `tr` (t
 
 As this task requires the creation of new files, we need a temporary directory to store them so we use `"mktemp -d"` and then copy the hexdump to the new directory.
 
-![[Wargames attachments/Pasted image 20250908134145.png]]
+![[attachments/Pasted image 20250908134145.png]]
 
 Knowing that `data.txt` is a hexdump, we can use `xxd -r` on the hexdump to reverse it's contents back into the original binary. Doing that we get this which isn't the answer.
 
-![[Wargames attachments/Pasted image 20250908134305.png|600]]
+![[attachments/Pasted image 20250908134305.png|600]]
 
  The question gives us a clue that the hexdump was compressed, so by checking the file type, we can see the compression tool used on it which was `gzip`
  
-![[Wargames attachments/Pasted image 20250908134559.png]]
+![[attachments/Pasted image 20250908134559.png]]
 
 In order to decompress the gzip, we need to add `.gz` to reversed_hex using `mv` so that the gzip tool is able to decompress it. Note that adding a file extension is only necessary for .gz archives.
 
-![[Wargames attachments/Pasted image 20250908134815.png]]
+![[attachments/Pasted image 20250908134815.png]]
 
 Now we decompress it using the `-d` flag. Upon doing this and checking the file type, we discover the file is still compressed by a different compression tool (`bzip2`).
 
-![[Wargames attachments/Pasted image 20250908135012.png]]
+![[attachments/Pasted image 20250908135012.png]]
 
 Decompressing using bzip2 and using file shows it's further compressed using gzip.
 
-![[Wargames attachments/Pasted image 20250908135221.png|700]]
+![[attachments/Pasted image 20250908135221.png|700]]
 
 Decompressing further...
 
-![[Wargames attachments/Pasted image 20250908135453.png]]
+![[attachments/Pasted image 20250908135453.png]]
 
 The next compression software used is `tar` so we use `"tar -xvf"` to decompress the file which produces `data5.bin` this time.
 `"-x"` Decompresses
 `"-v"` List files extracted from archive
 `"-f"` Specify the filename to be decompressed (reversed_hex)
 
-![[Wargames attachments/Pasted image 20250908140305.png]]
+![[attachments/Pasted image 20250908140305.png]]
 The next decompress cycle requires tar once again, then bzip2, tar, gzip in that order. 
 
 The final decompression produces an ASCII text file containing the password to the next level...
 
 **Output**
 
-![[Wargames attachments/Pasted image 20250908140551.png]]
+![[attachments/Pasted image 20250908140551.png]]
 
 
 --- 
@@ -158,7 +159,7 @@ The final decompression produces an ASCII text file containing the password to t
 
 Since the bandit14 file in banditpass can only be accessed by the bandit14 user, our objective is to log in as that account. We are provided with an SSH private key for authentication, so the first step is to find the key's path so that it can be inputted into the bandit14 ssh command.
 
-![[Wargames attachments/Pasted image 20250908141311.png]]
+![[attachments/Pasted image 20250908141311.png]]
 
 Taking the file path, we can use the command below to ssh in as bandit14. 
 
@@ -168,7 +169,7 @@ Once in, we cd to /etc/bandit_pass to `cat` bandit14 to find the password.
 
 **Output**
 
-![[Wargames attachments/Pasted image 20250908141924.png]]
+![[attachments/Pasted image 20250908141924.png]]
 
 --- 
 
@@ -182,7 +183,7 @@ Using `netcat`, we can send a message containing the current level’s password 
 
 **Output**
 
-![[Wargames attachments/Pasted image 20250910013612.png]]
+![[attachments/Pasted image 20250910013612.png]]
 
 --- 
 
@@ -194,11 +195,11 @@ This task requires us to send the current level’s password to port 30001 on lo
 
 **Solution**
 
-![[Wargames attachments/Pasted image 20250910203345.png]] 
+![[attachments/Pasted image 20250910203345.png]] 
 
 **Output**
 
-![[Wargames attachments/Pasted image 20250910203427.png]] 
+![[attachments/Pasted image 20250910203427.png]] 
 
 ---
 
