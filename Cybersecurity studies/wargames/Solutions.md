@@ -8,11 +8,15 @@ By SSH'ing into the first game room using the provided username bandit0 and pass
 **Output:**
 ee
 The image below should show
-![](wargames/Wargames_attachments/image.png)
+![](wargames/Wargames_attachments/image%202.png)
 
 
+![](./Wargames_attachments/image%202.png)
 
-![[Pasted image 20251015170242.png]]
+![](Wargames_attachments/Pasted%20image%2020251016165748.png)
+
+
+![[Wargames_attachments/Pasted image 20251015170242.png]]
 This room automatically puts us into room 1 after logging in.
 
 ---
@@ -24,7 +28,7 @@ By typing the`ls`command, we can see one file in our directory named "readme". W
 
 **Output:**
 
-![[Pasted image 20251015171657.png]]
+![[Wargames_attachments/Pasted image 20251015171657.png]]
 
 --- 
 
