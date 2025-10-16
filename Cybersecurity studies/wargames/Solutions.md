@@ -9,6 +9,10 @@ By SSH'ing into the first game room using the provided username bandit0 and pass
 ee
 The image below should show
 ![](wargames/Wargames_attachments/image%202.png)
+The image below should show below:
+
+![](./Wargames_attachments/image.png)
+
 
 
 
