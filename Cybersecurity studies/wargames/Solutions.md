@@ -8,7 +8,8 @@ By SSH'ing into the first game room using the provided username bandit0 and pass
 **Output:**
 ee
 The image below should show
-![](wargames/Wargames_attachments/image.png)
+![](./Wargames_attachments/image.png)
+
 
 
 
