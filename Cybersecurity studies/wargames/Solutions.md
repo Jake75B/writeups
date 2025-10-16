@@ -11,7 +11,8 @@ The image below should show
 ![](wargames/Wargames_attachments/image%202.png)
 
 
-![](./Wargames_attachments/image%202.png)
+
+This image below should show too!
 
 ![](Wargames_attachments/Pasted%20image%2020251016165748.png)
 
