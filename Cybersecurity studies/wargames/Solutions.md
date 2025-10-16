@@ -7,7 +7,8 @@ By SSH'ing into the first game room using the provided username bandit0 and pass
 
 **Output:**
 ee
-The image below should show
+The image below should show below:
+
 ![](./Wargames_attachments/image.png)
 
 
