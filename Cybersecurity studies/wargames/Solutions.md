@@ -9,8 +9,10 @@ By SSH'ing into the first game room using the provided username bandit0 and pass
 
 The image below should show
 
+![](Solutions-18.10.25-paste-5.png)
+
 ![](attachments/Solutions-18.10.25-paste.png)
-![](../Pasted%20image%2020251016181230.png)
+![](Pasted%20image%2020251018151456.png)
 ![](../Solutions-18.10.25-paste.png)
 ![](../Solutions-18.10.25-paste-3.png)
 This image below should show too!![](../Solutions-18.10.25-paste-2.png)
