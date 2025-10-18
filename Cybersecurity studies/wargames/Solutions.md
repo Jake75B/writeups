@@ -8,6 +8,8 @@ By SSH'ing into the first game room using the provided username bandit0 and pass
 **Output:**
 
 The image below should show
+![](../Solutions-18.10.25-paste-6.png)
+
 
 ![](Solutions-18.10.25-paste-5.png)
 
