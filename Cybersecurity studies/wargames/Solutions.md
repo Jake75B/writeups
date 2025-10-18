@@ -1,6 +1,6 @@
 
 0. The goal of this level is for you to log into the game using `SSH`. The host to which you need to connect is **bandit.labs.overthewire.org**, on port **2220**. The username is **bandit0** and the password is **bandit0**. 
-![](attachments/Solutions-18.10.25-paste.png)
+
 **Solution:**
 
 By SSH'ing into the first game room using the provided username bandit0 and password bandit0, we are granted access.
