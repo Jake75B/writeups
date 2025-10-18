@@ -7,19 +7,8 @@ By SSH'ing into the first game room using the provided username bandit0 and pass
 
 **Output:**
 
-The image below should show
-
-
 ![](attachments/Solutions-18.10.25-paste.png)
-![](Pasted%20image%2020251018151456.png)
-![](../Solutions-18.10.25-paste.png)
-![](../Solutions-18.10.25-paste-3.png)
-This image below should show too!![](../Solutions-18.10.25-paste-2.png)
 
-![](../Solutions-16.10.25.png)
-
-
-![[attachments/Solutions-18.10.25-paste26.png]]
 This room automatically puts us into room 1 after logging in.
 
 ---
@@ -31,7 +20,7 @@ By typing the`ls`command, we can see one file in our directory named "readme". W
 
 **Output:**
 
-![[attachments/Solutions-18.10.25-paste28.png]]
+![](attachments/Solutions-18.10.25-paste28.png)
 
 --- 
 
@@ -51,7 +40,7 @@ uniq -u: keeps only lines that occur once originally
 
 **Output:**
 
-![[attachments/Solutions-18.10.25-paste3.png]]
+![](attachments/Solutions-18.10.25-paste3.png)
 
 --- 
 
@@ -68,7 +57,7 @@ uniq -u: keeps only lines that occur once originally
 
 As you can see, the password for the next room is split between the last and second last line.
 
-![[attachments/Solutions-18.10.25-paste2.png]]
+![](attachments/Solutions-18.10.25-paste2.png)
 
 ---
 
@@ -81,7 +70,7 @@ As you can see, the password for the next room is split between the last and sec
 
 **Output**
 
-![[attachments/Solutions-18.10.25-paste4.png|800]]
+![](attachments/Solutions-18.10.25-paste4.png)
 
 --- 
 
@@ -100,9 +89,9 @@ requiring a rotation by 13 positions. To get around this, we can use the `tr` (t
 
 **Output**
 
-![[attachments/Solutions-18.10.25-paste6.png|500]]
+![](attachments/Solutions-18.10.25-paste6.png)
 
-![[attachments/Solutions-18.10.25-paste5.png]]
+![](attachments/Solutions-18.10.25-paste5.png)
 
 --- 
 12. The password for the next level is stored in the file **data.txt**, which is a hexdump of a file that has been repeatedly compressed. For this level it may be useful to create a directory under /tmp in which you can work. Use mkdir with a hard to guess directory name. Or better, use the command “mktemp -d”. Then copy the datafile using cp, and rename it using mv (read the manpages!)
@@ -111,45 +100,45 @@ requiring a rotation by 13 positions. To get around this, we can use the `tr` (t
 
 As this task requires the creation of new files, we need a temporary directory to store them so we use `"mktemp -d"` and then copy the hexdump to the new directory.
 
-![[attachments/Solutions-18.10.25-paste7.png]]
+![](attachments/Solutions-18.10.25-paste7.png)
 
 Knowing that `data.txt` is a hexdump, we can use `xxd -r` on the hexdump to reverse it's contents back into the original binary. Doing that we get this which isn't the answer.
 
-![[attachments/Solutions-18.10.25-paste8.png|600]]
+![](attachments/Solutions-18.10.25-paste8.png)
 
  The question gives us a clue that the hexdump was compressed, so by checking the file type, we can see the compression tool used on it which was `gzip`
  
-![[attachments/Solutions-18.10.25-paste9.png]]
+![](attachments/Solutions-18.10.25-paste9.png)
 
 In order to decompress the gzip, we need to add `.gz` to reversed_hex using `mv` so that the gzip tool is able to decompress it. Note that adding a file extension is only necessary for .gz archives.
 
-![[attachments/Solutions-18.10.25-paste10.png]]
+![](attachments/Solutions-18.10.25-paste10.png)
 
 Now we decompress it using the `-d` flag. Upon doing this and checking the file type, we discover the file is still compressed by a different compression tool (`bzip2`).
 
-![[attachments/Solutions-18.10.25-paste11.png]]
+![](attachments/Solutions-18.10.25-paste11.png)
 
 Decompressing using bzip2 and using file shows it's further compressed using gzip.
 
-![[attachments/Solutions-18.10.25-paste12.png|700]]
+![](attachments/Solutions-18.10.25-paste12.png)
 
 Decompressing further...
 
-![[attachments/Solutions-18.10.25-paste13.png]]
+![](attachments/Solutions-18.10.25-paste13.png)
 
 The next compression software used is `tar` so we use `"tar -xvf"` to decompress the file which produces `data5.bin` this time.
 `"-x"` Decompresses
 `"-v"` List files extracted from archive
 `"-f"` Specify the filename to be decompressed (reversed_hex)
 
-![[attachments/Solutions-18.10.25-paste14.png]]
+![](attachments/Solutions-18.10.25-paste14.png)
 The next decompress cycle requires tar once again, then bzip2, tar, gzip in that order. 
 
 The final decompression produces an ASCII text file containing the password to the next level...
 
 **Output**
 
-![[attachments/Solutions-18.10.25-paste15.png]]
+![](attachments/Solutions-18.10.25-paste15.png)
 
 
 --- 
@@ -160,7 +149,7 @@ The final decompression produces an ASCII text file containing the password to t
 
 Since the bandit14 file in banditpass can only be accessed by the bandit14 user, our objective is to log in as that account. We are provided with an SSH private key for authentication, so the first step is to find the key's path so that it can be inputted into the bandit14 ssh command.
 
-![[attachments/Solutions-18.10.25-paste17.png]]
+![](attachments/Solutions-18.10.25-paste17.png)
 
 Taking the file path, we can use the command below to ssh in as bandit14. 
 
@@ -170,7 +159,7 @@ Once in, we cd to /etc/bandit_pass to `cat` bandit14 to find the password.
 
 **Output**
 
-![[attachments/Solutions-18.10.25-paste20.png]]
+![](attachments/Solutions-18.10.25-paste20.png)
 
 --- 
 
@@ -184,7 +173,7 @@ Using `netcat`, we can send a message containing the current level’s password 
 
 **Output**
 
-![[attachments/Solutions-18.10.25-paste21.png]]
+![](attachments/Solutions-18.10.25-paste21.png)
 
 --- 
 
@@ -196,11 +185,11 @@ This task requires us to send the current level’s password to port 30001 on lo
 
 **Solution**
 
-![[attachments/Solutions-18.10.25-paste22.png]] 
+![](attachments/Solutions-18.10.25-paste22.png) 
 
 **Output**
 
-![[attachments/Solutions-18.10.25-paste23.png]] 
+![](attachments/Solutions-18.10.25-paste23.png) 
 
 ---
 
