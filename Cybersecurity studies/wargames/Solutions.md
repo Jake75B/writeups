@@ -1,10 +1,15 @@
 
-0. The goal of this level is for you to log into the game using `SSH`. The host to which you need to connect is **bandit.labs.overthewire.org**, on port **2220**. The username is **bandit0** and the password is **bandit0**. 
+0. (part 1) The goal of this level is for you to log into the game using `SSH`. The host to which you need to connect is **bandit.labs.overthewire.org**, on port **2220**. The username is **bandit0** and the password is **bandit0**. 
 
 **Solution:**
 
-By SSH'ing into the first game room using the provided username bandit0 and password bandit0, we are granted access.
+By SSH'ing into the first game room using the provided username bandit0 and password bandit0, we are granted access. We can use the `-p` flag to specify a port.
 
+**Commands:**
+
+`ssh -p`: secure shell remote login into a specific port
+`bandit@bandit.labs.overthewire.org`: username@address
+`
 **Output:**
 
 ![](attachments/Solutions-18.10.25-paste.png)
@@ -12,11 +17,17 @@ By SSH'ing into the first game room using the provided username bandit0 and pass
 This room automatically puts us into room 1 after logging in.
 
 ---
-0. The password for the next level is stored in a file called readme located in the home directory.
+
+0. (part 2) The password for the next level is stored in a file called readme located in the home directory.
 
 **Solution:**
 
 By typing the`ls`command, we can see one file in our directory named "readme". We can use cat to read the contents of this file.
+
+**Commands:**
+
+`ls`: List all files and folders in current directory
+`cat`: Print out file contents
 
 **Output:**
 
@@ -24,9 +35,129 @@ By typing the`ls`command, we can see one file in our directory named "readme". W
 
 --- 
 
-2. 
+1.  The password for the next level is stored in a file called - located in the home directory
+   
+**Solution:**
+
+Attempting to read a file that is called "-" will result in `cat` treating it as an argument which prevents us from reading it. By using `cat` followed by `./` we can view the files contents.
+
+`./`: refers to the current directory
+
+**Output:**
+ 
+![](../Solutions-18.10.25-paste-7.png)
 
 ---
+
+2. The password for the next level is stored in a file called --spaces in this filename-- located in the home directory
+
+**Solution:**
+
+In order to read a file containing spaces in it's filename, we need to enclose the file within quotation marks as well as adding `./` at the start to ensure that the `cat` command doesn't recognise it as an argument. 
+
+`cat ./"--spaces in this filename--"`
+
+**Output:**
+
+![](../Solutions-18.10.25-paste-8.png)
+
+
+---
+
+3.  The password for the next level is stored in a hidden file in the **inhere** directory.
+
+**Solution:**
+
+First we `cd` into the folder **Inhere** and then use `ls` to display all files. As you can see in the output, nothing is shown. In order to see hidden files we need to add the `-a` flag to show hidden files. Once we have the filename, we can use `cat` on it.
+
+`cd`: change directory
+`ls -a`: show hidden files
+
+**Output:**
+
+![](../Solutions-18.10.25-paste-9.png)
+
+---
+
+4. The password for the next level is stored in the only human-readable file in the inhere directory. Tip: if your terminal is messed up, try the “reset” command.
+
+**Solution:**
+
+To find the only human-readable file, we can use the `file` command to read the file contents.
+
+`file:`identifies file types by examining their content rather than their file extensions
+
+**Output:**
+
+![](../Solutions-18.10.25-paste-10.png)
+
+---
+
+5. The password for the next level is stored in a file somewhere under the inhere directory and has all of the following properties: human-readable, 1033 bytes in size, not executable
+
+**Solution**
+
+We can use the `find` command along with the `-executable`, `-size`, and `-readable` flag to find the password. Once we have the directory, we can use `cat` to read the file.
+
+`find ! -executable -size 1033c -readable
+
+`
+`! -executable`: Searches for files that are not executable, by adding a `!` before the flag
+`-readable`: Searches for human readable size
+`-size`: Searches for files with a specific size, followed by the type. i.e 1033c (1033 btyes)
+
+![](../Solutions-18.10.25-paste-16.png)
+
+**Output**
+![](../Solutions-18.10.25-paste-11.png)
+
+---
+
+6. The password for the next level is stored somewhere on the server and has all of the following properties: owned by user bandit7, owned by group bandit6, 33 bytes in size
+
+**Solution:**
+
+Similar to the last room, we need to use the `find` command to search for the file containing the password. We can use the `-user` and `-group` as well as the `-size` flag to look for the file. 
+
+The question states that the file is stored "somewhere on the server" so in order to find it , we can use `/` to look for the file starting from the root directory (searches entire server). 
+
+`find / -user bandit7 -group bandit6 -size 33c`
+
+`/`: Search from root directory (search entire server)
+`-user`: Search for files owned by a user
+`-group`: Search for a files owned by a group
+
+
+After the search results return, we have a lot of results with all but one of them requiring permission to access.
+
+![](../Solutions-18.10.25-paste-12.png)
+
+Hidden among these is the only accessible file, by reading this file, we can get the answer
+
+![](../Solutions-18.10.25-paste-13.png)
+
+**Output:**
+
+![](../Solutions-18.10.25-paste-14.png)
+
+---
+
+7. The password for the next level is stored in the file data.txt next to the word millionth
+
+**Solution:**
+
+In order to find the password, we can use `grep` to search for for the word 'millionth' within the file.
+
+`grep millionth data.txt`
+
+`grep`: Searches files for text patterns
+
+**Output:**
+
+![](../Solutions-18.10.25-paste-17.png)
+
+---
+
 8. The password for the next level is stored in the file **data.txt** and is the only line of text that occurs only once.
 
 **Solution:**
@@ -132,6 +263,7 @@ The next compression software used is `tar` so we use `"tar -xvf"` to decompress
 `"-f"` Specify the filename to be decompressed (reversed_hex)
 
 ![](attachments/Solutions-18.10.25-paste14.png)
+
 The next decompress cycle requires tar once again, then bzip2, tar, gzip in that order. 
 
 The final decompression produces an ASCII text file containing the password to the next level...
@@ -142,6 +274,7 @@ The final decompression produces an ASCII text file containing the password to t
 
 
 --- 
+
 
 13. The password for the next level is stored in **/etc/bandit_pass/bandit14 and can only be read by user bandit14**. For this level, you don’t get the next password, but you get a private SSH key that can be used to log into the next level. **Note:** **localhost** is a hostname that refers to the machine you are working on
 
@@ -156,6 +289,7 @@ Taking the file path, we can use the command below to ssh in as bandit14.
 `**bandit13@bandit**:**~**$ ssh -p 2220  -i '/home/bandit13/sshkey.private' bandit14@bandit.labs.overthewire.org`
 
 Once in, we cd to /etc/bandit_pass to `cat` bandit14 to find the password.
+
 
 **Output**
 
@@ -183,7 +317,6 @@ Using `netcat`, we can send a message containing the current level’s password 
 
 This task requires us to send the current level’s password to port 30001 on localhost, but unlike the previous challenge, the connection must use SSL/TLS encryption. `NC` does not support this so we have to use `openssl` 
 
-**Solution**
 
 ![](attachments/Solutions-18.10.25-paste22.png) 
 
