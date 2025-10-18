@@ -1,4 +1,0 @@
-- Malware book 2 hours 
-- Wargames 1 hour 
-- Security+ 2 videos 
-- Job applications!!!
