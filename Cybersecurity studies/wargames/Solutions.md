@@ -45,7 +45,7 @@ Attempting to read a file that is called "-" will result in `cat` treating it as
 
 **Output:**
  
-![](../Solutions-18.10.25-paste-7.png)
+![](attachments/Solutions-18.10.25-paste-7.png)
 
 ---
 
@@ -59,7 +59,7 @@ In order to read a file containing spaces in it's filename, we need to enclose t
 
 **Output:**
 
-![](../Solutions-18.10.25-paste-8.png)
+![](attachments/Solutions-18.10.25-paste-8.png)
 
 
 ---
@@ -75,7 +75,7 @@ First we `cd` into the folder **Inhere** and then use `ls` to display all files.
 
 **Output:**
 
-![](../Solutions-18.10.25-paste-9.png)
+![](attachments/Solutions-18.10.25-paste-9.png)
 
 ---
 
@@ -89,7 +89,7 @@ To find the only human-readable file, we can use the `file` command to read the 
 
 **Output:**
 
-![](../Solutions-18.10.25-paste-10.png)
+![](attachments/Solutions-18.10.25-paste-10.png)
 
 ---
 
@@ -106,10 +106,10 @@ We can use the `find` command along with the `-executable`, `-size`, and `-reada
 `-readable`: Searches for human readable size
 `-size`: Searches for files with a specific size, followed by the type. i.e 1033c (1033 btyes)
 
-![](../Solutions-18.10.25-paste-16.png)
+![](attachments/Solutions-18.10.25-paste-16.png)
 
 **Output**
-![](../Solutions-18.10.25-paste-11.png)
+![](attachments/Solutions-18.10.25-paste-11.png)
 
 ---
 
@@ -130,15 +130,15 @@ The question states that the file is stored "somewhere on the server" so in orde
 
 After the search results return, we have a lot of results with all but one of them requiring permission to access.
 
-![](../Solutions-18.10.25-paste-12.png)
+![](attachments/Solutions-18.10.25-paste-12.png)
 
 Hidden among these is the only accessible file, by reading this file, we can get the answer
 
-![](../Solutions-18.10.25-paste-13.png)
+![](attachments/Solutions-18.10.25-paste-13.png)
 
 **Output:**
 
-![](../Solutions-18.10.25-paste-14.png)
+![](attachments/Solutions-18.10.25-paste-14.png)
 
 ---
 
@@ -154,7 +154,7 @@ In order to find the password, we can use `grep` to search for for the word 'mil
 
 **Output:**
 
-![](../Solutions-18.10.25-paste-17.png)
+![](attachments/Solutions-18.10.25-paste-17.png)
 
 ---
 
