@@ -102,9 +102,9 @@ We can use the `find` command along with the `-executable`, `-size`, and `-reada
 `find ! -executable -size 1033c -readable
 
 `
-`! -executable`: Searches for files that are not executable, by adding a `!` before the flag
-`-readable`: Searches for human readable size
-`-size`: Searches for files with a specific size, followed by the type. i.e 1033c (1033 btyes)
+`find ! -executable`: Searches for files that are not executable, by adding a `!` before the flag
+`find -readable`: Searches for human readable size
+`find -size`: Searches for files with a specific size, followed by the type. i.e 1033c (1033 btyes)
 
 ![](attachments/Solutions-18.10.25-paste-16.png)
 
@@ -124,8 +124,8 @@ The question states that the file is stored "somewhere on the server" so in orde
 `find / -user bandit7 -group bandit6 -size 33c`
 
 `/`: Search from root directory (search entire server)
-`-user`: Search for files owned by a user
-`-group`: Search for a files owned by a group
+`find -user`: Search for files owned by a user
+`find -group`: Search for a files owned by a group
 
 
 After the search results return, we have a lot of results with all but one of them requiring permission to access.
@@ -162,27 +162,29 @@ In order to find the password, we can use `grep` to search for for the word 'mil
 
 **Solution:**
 
-`` sort data.txt | uniq -u
+In order to solve this, we can use the `sort` command to sort the lines into lexicographical order. Then we can use the piping command `|` to pass the sorted lines into the next command which will remove extra duplicate lines and keep a single copy of unique lines. the `-u`flag will keep lines that only occurred once originally.
 
-sort: sort in lexicographical order
-" | " , "piping": takes output of command on left and uses as input on right
-uniq: removes extra duplicates and keeps a copy
-uniq -u: keeps only lines that occur once originally
+`sort data.txt | uniq -u`
+
+`sort:` sort in lexicographical order
+`" | " , "piping"`: takes output of command on left and uses as input on right
+`uniq -u:`removes extra duplicates and keeps a copy, `-u` keeps only lines that occurred once originally before uniq.
 
 **Output:**
 
-![](attachments/Solutions-18.10.25-paste3.png)
+![](attachments/Solutions-19.10.25-paste.png)
 
 --- 
 
 9. The password for the next level is stored in the file **data.txt** in one of the few human-readable strings, preceded by several ‘=’ characters.
 
+For this task, we can use `grep` to search for == using the `-a` flag to tell grep to treat the file as it was readable text.
+
 **Solution:**
 
 `grep "===" data.txt -a`
 
-- grep, search using regex
-- -a , treat file as text 
+- `grep -a`: treat file as if it was readable text.
 
 **Output:**
 
@@ -192,12 +194,17 @@ As you can see, the password for the next room is split between the last and sec
 
 ---
 
-10. The password for the next level is stored in the file **data.txt**, which contains base64 encoded data
+10. The password for the next level is stored in the file **data.txt**, which contains base64 encoded data.
+
+When using `cat` on **data.txt**, the base64 encoded data is shown.  We can decode this using the `base64` command in `--decode mode` using `<<<` to pass the base64 straight in.
+
+`Base64`: encodes or decodes data using base64
+`--decode:`base64 decode mode
+`<<<`: Passes string directly as an input to the command instead of reading a file
 
 **Solution**
 
-- As we can see, when using `cat` on data.txt, the base64 encoded data is shown. 
-- We can decode this using the `base64` command in `--decode mode` using `<<<` to pass the base64 straight in.
+base64 --decode <<< base64 string
 
 **Output**
 
@@ -207,29 +214,32 @@ As you can see, the password for the next room is split between the last and sec
 
 11. The password for the next level is stored in the file **data.txt**, where all lowercase (a-z) and uppercase (A-Z) letters have been rotated by 13 positions
 
-**Solution**
+ When reading the **data.txt** file, we can see that the password is contained within the caesar cipher shown below, requiring a rotation by 13 positions. To get around this, we can use the `tr` (translate) command.
 
-The password is contained within this caesar cipher: 
 `"Gur cnffjbeq vf 7k16JArUVv5LxVuJfsSVdbbtaHGlw9D4"` 
-requiring a rotation by 13 positions. To get around this, we can use the `tr` (translate) command.
+
+
+**Solution**
 
 `tr 'A-Za-z' 'N-ZA-Mn-za-m' <<< " Gur cnffjbeq vf 7k16JArUVv5LxVuJfsSVdbbtaHGlw9D4"`
 
-`'A-Za-z'` take all uppercase and lower case
- `'N-ZA-Mn-za-m'` uppercase and lower case shift the alphabet by 13 places
+`tr`: translate command
+`'A-Za-z'`: take all uppercase and lower case
+ `'N-ZA-Mn-za-m'`: uppercase and lower case shift the alphabet by 13 places
 
 **Output**
 
-![](attachments/Solutions-18.10.25-paste6.png)
+![](attachments/Solutions-19.10.25-paste-1.png)
 
 ![](attachments/Solutions-18.10.25-paste5.png)
 
 --- 
-12. The password for the next level is stored in the file **data.txt**, which is a hexdump of a file that has been repeatedly compressed. For this level it may be useful to create a directory under /tmp in which you can work. Use mkdir with a hard to guess directory name. Or better, use the command “mktemp -d”. Then copy the datafile using cp, and rename it using mv (read the manpages!)
+
+12. The password for the next level is stored in the file **data.txt**, which is a hexdump of a file that has been repeatedly compressed. For this level it may be useful to create a directory under /tmp in which you can work. Use mkdir with a hard to guess directory name. Or better, use the command “mktemp -d”. Then copy the datafile using cp, and rename it using mv.
 
 **Solution** 
 
-As this task requires the creation of new files, we need a temporary directory to store them so we use `"mktemp -d"` and then copy the hexdump to the new directory.
+As this task requires the creation of new files, we need a temporary directory to store them so we use `"mktemp -d"` and then use `cp` copy the hexdump to the new directory.
 
 ![](attachments/Solutions-18.10.25-paste7.png)
 
@@ -258,6 +268,7 @@ Decompressing further...
 ![](attachments/Solutions-18.10.25-paste13.png)
 
 The next compression software used is `tar` so we use `"tar -xvf"` to decompress the file which produces `data5.bin` this time.
+
 `"-x"` Decompresses
 `"-v"` List files extracted from archive
 `"-f"` Specify the filename to be decompressed (reversed_hex)
@@ -267,6 +278,14 @@ The next compression software used is `tar` so we use `"tar -xvf"` to decompress
 The next decompress cycle requires tar once again, then bzip2, tar, gzip in that order. 
 
 The final decompression produces an ASCII text file containing the password to the next level...
+
+`mktemp -d`: Creates a temporary directory with a unique name,
+`mv`: move or rename files
+`cp`: copy files or directories
+`xxd -r`: creates a hex dump of a file, `-r` reverses it.
+`gzip -d`: gzip compression tool, `-d` decompresses gzip archives
+`bzip2 -d`: bzip compression tool, `-d` decompresses bzip archives
+`tar -xvf`: tar compression too, extracts files from tar archives, `-x` extracts, `-v` verbose mode, `-f` specifies the filename to extract
 
 **Output**
 
@@ -278,9 +297,10 @@ The final decompression produces an ASCII text file containing the password to t
 
 13. The password for the next level is stored in **/etc/bandit_pass/bandit14 and can only be read by user bandit14**. For this level, you don’t get the next password, but you get a private SSH key that can be used to log into the next level. **Note:** **localhost** is a hostname that refers to the machine you are working on
 
+Since the bandit14 file in **bandit_pass** can only be accessed by the bandit14 user, our objective is to log in as that account. We are provided with an SSH private key for authentication, so the first step is to find the key's path so that it can be inputted into the bandit14 ssh command.
+
 **solution**
 
-Since the bandit14 file in banditpass can only be accessed by the bandit14 user, our objective is to log in as that account. We are provided with an SSH private key for authentication, so the first step is to find the key's path so that it can be inputted into the bandit14 ssh command.
 
 ![](attachments/Solutions-18.10.25-paste17.png)
 
@@ -290,6 +310,8 @@ Taking the file path, we can use the command below to ssh in as bandit14.
 
 Once in, we cd to /etc/bandit_pass to `cat` bandit14 to find the password.
 
+`realpath`: shows full file path of a file or directory
+
 
 **Output**
 
@@ -297,13 +319,16 @@ Once in, we cd to /etc/bandit_pass to `cat` bandit14 to find the password.
 
 --- 
 
-14.
+14. The password for the next level can be retrieved by submitting the password of the current level to port 30000 on localhost.
 
-The password for the next level can be retrieved by submitting the password of the current level to port 30000 on localhost.
+This task requires us to interact with port 30000. Using `netcat`, we can send a message containing the current level’s password to port 30000 on `localhost` , which will return the password for the next level.
 
 **Solution**
 
-Using `netcat`, we can send a message containing the current level’s password to port 30000 on `localhost` , which will return the password for the next level.
+`nc localhost 30000`
+
+`nc`: netcat tool
+`localhost 3000`: specifying the ip (localhost in this instance) as well as the port
 
 **Output**
 
@@ -313,12 +338,16 @@ Using `netcat`, we can send a message containing the current level’s password 
 
 15. The password for the next level can be retrieved by submitting the password of the current level to port 30001 on localhost using SSL/TLS encryption.
 
-**Solution**
-
 This task requires us to send the current level’s password to port 30001 on localhost, but unlike the previous challenge, the connection must use SSL/TLS encryption. `NC` does not support this so we have to use `openssl` 
 
+**Solution**
 
 ![](attachments/Solutions-18.10.25-paste22.png) 
+
+`openssl`: tool for ssl/tls 
+`s_client`: <mark style="background: #E59E52;">remove meee
+</mark>
+`-connect localhost:30001`: specify ip/port
 
 **Output**
 
@@ -327,3 +356,24 @@ This task requires us to send the current level’s password to port 30001 on lo
 ---
 
 16. The credentials for the next level can be retrieved by submitting the password of the current level to a port on localhost in the range 31000 to 32000. First find out which of these ports have a server listening on them. Then find out which of those speak SSL/TLS and which don’t. There is only 1 server that will give the next credentials, the others will simply send back to you whatever you send to it.
+
+The first part of this task is to conduct an`nmap` scan to find any listening ports. The following command can be used to do so.
+
+`nmap -p 31000-32000 localhost`
+
+`nmap`: network analyser that sends packets and analyses responses
+`-p`: specify a port, in this instance we are specifying a range
+
+<mark style="background: #E59E52;">image of nmap</mark>
+
+From the 5 ports found, we can now manually send the password of the current level to each one to find a response. This can be done in a similar fashion to the previous question by using `openssl` in the same fashion. 
+
+As we can see when connecting to the wrong one, we are returned with the same password back.
+
+<mark style="background: #E59E52;">ssl connection for wrong port</mark>
+
+We we input the password of the current level into the correct port, an RSA private key is returned. 
+
+<mark style="background: #E59E52;">RSA key return screenshot</mark>
+
+We can use this key by first saving it to a directory.
