@@ -344,9 +344,8 @@ This task requires us to send the current level’s password to port 30001 on lo
 
 ![](attachments/Solutions-18.10.25-paste22.png) 
 
-`openssl`: tool for ssl/tls 
-`s_client`: <mark style="background: #E59E52;">remove meee
-</mark>
+`openssl`: tool for working with SSL/TLS protocols, certificates, and cryptography
+`s_client`: command that acts as a client to connect to a TLS/SSL server
 `-connect localhost:30001`: specify ip/port
 
 **Output**
@@ -355,25 +354,85 @@ This task requires us to send the current level’s password to port 30001 on lo
 
 ---
 
-16. The credentials for the next level can be retrieved by submitting the password of the current level to a port on localhost in the range 31000 to 32000. First find out which of these ports have a server listening on them. Then find out which of those speak SSL/TLS and which don’t. There is only 1 server that will give the next credentials, the others will simply send back to you whatever you send to it.
+16. The credentials for the next level can be retrieved by submitting the password of the current level to a port on localhost in the range 31000 to 32000. First find out which of these ports have a server listening on them. Then find out which of those speak SSL/TLS and which don’t. There is only 1 server that will give the next credentials, the others will simply send back to you whatever you send to it. 
+
+
+**Solution:**
 
 The first part of this task is to conduct an`nmap` scan to find any listening ports. The following command can be used to do so.
 
 `nmap -p 31000-32000 localhost`
 
-`nmap`: network analyser that sends packets and analyses responses
-`-p`: specify a port, in this instance we are specifying a range
 
-<mark style="background: #E59E52;">image of nmap</mark>
+![](attachments/Solutions-22.10.25-paste.png)
 
 From the 5 ports found, we can now manually send the password of the current level to each one to find a response. This can be done in a similar fashion to the previous question by using `openssl` in the same fashion. 
 
-As we can see when connecting to the wrong one, we are returned with the same password back.
+![](attachments/Solutions-22.10.25-paste-2.png)
 
-<mark style="background: #E59E52;">ssl connection for wrong port</mark>
+As we can see above, when connecting to the wrong one, we are returned with nothing and the connection ends. A similar result occurs when connecting to ports **31691** and **31960** however, when connecting to ports **31518** and **31790**, a connection is established.
 
-We we input the password of the current level into the correct port, an RSA private key is returned. 
+Upon pasting the password for the current level to both **31518** and **31790**, we are returned with this:
 
-<mark style="background: #E59E52;">RSA key return screenshot</mark>
+![](attachments/Solutions-22.10.25-paste-3.png)
 
-We can use this key by first saving it to a directory.
+This isn't the password, and when referring to the level instructions, we see this.
+
+![](attachments/Solutions-22.10.25-paste-4.png)
+
+Referring to the [openssl](https://docs.openssl.org/3.0/man1/openssl-s_client/#options) man page, we can see that the `-quiet` and `-ign_eof `flags can be tried.
+
+
+![](attachments/Solutions-22.10.25-paste-5.png)
+
+Note that when connecting to the ports that previously did not connect (**31046, 31691, 31960**), using the two new flags results in an error.
+
+![](attachments/Solutions-22.10.25-paste-7.png)
+
+Trying the new flags on the other two ports returning "KEYUPDATE":
+
+
+![](attachments/Solutions-22.10.25-paste-8.png)
+
+When inputting the current password into port 31790, we get a private key instead of the password. We can use this key to SSH into the next level.
+
+![](attachments/Solutions-22.10.25-paste-9.png)
+
+To use this key, we need to save it to our desktop. We can do this by using `cd` to access our desktop directory, then by using `nano` we can save the key using the **.pem** file format. 
+
+To SSH, we can use the flag `-i` followed by the file path to the key as well as the ssh username and address.
+
+`ssh -i /Users/jake/Desktop/key17.pem -p 2220 bandit17@bandit.labs.overthewire.org`
+
+
+![](attachments/Solutions-22.10.25-paste-12.png)
+
+Unfortunately, our private key is recognised as being 'unprotected' and has permission 644. By doing a quick search online, permission 644 means that the owner gets read and write (6), the group gets read (4), and everyone else gets read permission (4).
+
+However for a private key, only the owner should have access and therefore we should use chmod [600](https://superuser.com/questions/779157/ssh-permissions-0644-for-my-key-pub-are-too-open) as the file permission.
+
+We can set permission 600 by using the command `chmod 600 key17.pem`.
+
+
+Now we can SSH into the next room!
+
+**Output**
+
+![](attachments/Solutions-22.10.25-paste-15.png)
+
+
+`nmap`: network analyser that sends packets and analyses responses
+`-p`: specify a port, in this instance we are specifying a range
+
+`-quiet` (openssl): Suppresses extra output in s_client, showing only essential connection info. This suppress the internal handling of KEYUPDATE which would normally close the connection.
+-`ign_eof` (openssl): Tells s_client to ignore EOF from the server, keeping the session open.
+
+`chmod 600`:  Sets file permissions so only the owner can read/write
+
+`ssh -i`: Specify a private key file for SSH authentication instead of using a password
+
+--- 
+
+18. There are 2 files in the homedirectory: **passwords.old and passwords.new**. The password for the next level is in **passwords.new** and is the only line that has been changed between **passwords.old and passwords.new**
+
+**NOTE: if you have solved this level and see ‘Byebye!’ when trying to log into bandit18, this is related to the next level, bandit19**
