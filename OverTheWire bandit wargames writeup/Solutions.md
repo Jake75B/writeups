@@ -414,13 +414,6 @@ However for a private key, only the owner should have access and therefore we sh
 We can set permission 600 by using the command `chmod 600 key17.pem`.
 
 
-Now we can SSH into the next room!
-
-**Output**
-
-![](attachments/Solutions-22.10.25-paste-15.png)
-
-
 `nmap`: network analyser that sends packets and analyses responses
 `-p`: specify a port, in this instance we are specifying a range
 
@@ -431,8 +424,61 @@ Now we can SSH into the next room!
 
 `ssh -i`: Specify a private key file for SSH authentication instead of using a password
 
+
+Now we can SSH into the next room!
+
+**Output**
+
+![](attachments/Solutions-22.10.25-paste-15.png)
+
+
 --- 
 
-18. There are 2 files in the homedirectory: **passwords.old and passwords.new**. The password for the next level is in **passwords.new** and is the only line that has been changed between **passwords.old and passwords.new**
+17. There are 2 files in the homedirectory: **passwords.old and passwords.new**. The password for the next level is in **passwords.new** and is the only line that has been changed between **passwords.old and passwords.new**
 
 **NOTE: if you have solved this level and see ‘Byebye!’ when trying to log into bandit18, this is related to the next level, bandit19**
+
+**Solution:**
+
+To solve this, we can use the diff command to find differences between the two files.
+
+
+-`Diff`: compares two files, argument 1 (the first file) and argument 2 (the second file), and shows the differences between them.
+
+**Output**: 
+
+![](attachments/Solutions-02.12.25-paste.png)
+
+
+---
+
+
+18. The password for the next level is stored in a file readme in the homedirectory. Unfortunately, someone has modified .bashrc to log you out when you log in with SSH.
+
+
+**Solution:**
+
+When attempting to SSH into this room we automatically get disconnected before we can execute any commands.
+
+![](attachments/Solutions-02.12.25-paste-1.png)
+
+
+In order to bypass this we can use SSH to remotely execute commands by inserting them into the SSH arguments.
+
+`ssh -p 2220 bandit18@bandit.labs.overthewire.org "ls"`
+
+We can add a command in quotations and it will execute as shown below. 
+
+![](attachments/Solutions-02.12.25-paste-2.png)
+
+We can use the `cat` command to find the password to the next level by using this method. Note that using `~` points towards the home directory.
+
+
+**Output:**
+
+![](attachments/Solutions-02.12.25-paste-3.png)
+
+
+---
+
+
