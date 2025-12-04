@@ -25,12 +25,15 @@ First we run a listener script that will listen for all incoming credentials on 
 
 Browsing to the IP using a browser, we can use the admin's password from the previous exercise to get into the account: unranked-wisdom-anthem. 
 
+
 ![](AdventOfCyber%20Attatchments/Day%202,%20Phishing%20-%20Merry%20Clickmas-04.12.25-paste-4.png)
+
 
 Once we are in, we can see the phishing email we used SEtoolKit to send.
 
 
 ![](AdventOfCyber%20Attatchments/Day%202,%20Phishing%20-%20Merry%20Clickmas-04.12.25-paste-2.png)
+
 
 **Output**
 
