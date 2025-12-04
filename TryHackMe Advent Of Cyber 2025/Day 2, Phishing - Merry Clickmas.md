@@ -24,20 +24,28 @@ First we run a listener script that will listen for all incoming credentials on 
 **Solution**
 
 Browsing to the IP using a browser, we can use the admin's password from the previous exercise to get into the account: unranked-wisdom-anthem. 
+<br>
+<br>
 
 
 ![](AdventOfCyber%20Attatchments/Day%202,%20Phishing%20-%20Merry%20Clickmas-04.12.25-paste-4.png)
-
-
+<br>
+<br>
 Once we are in, we can see the phishing email we used SEtoolKit to send.
-
+<br>
+<br>
 
 ![](AdventOfCyber%20Attatchments/Day%202,%20Phishing%20-%20Merry%20Clickmas-04.12.25-paste-2.png)
 
+<br>
+<br>
 
 **Output**
-
+<br>
+<br>
 clicking on the other email gives us the answer: 1984000 toys
+<br>
+<br>
 
 
 ![](AdventOfCyber%20Attatchments/Day%202,%20Phishing%20-%20Merry%20Clickmas-04.12.25-paste-5.png)
