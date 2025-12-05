@@ -12,7 +12,7 @@ Using the command `index=main sourcetype=web_traffic | timechart span=1d count |
 
 **Output**
 
-![](AdventOfCyber%20Attatchments/Day%203,%20Splunk%20Basics%20-%20Did%20you%20SIEM?-05.12.25-paste.png)
+![](AdventOfCyber%20Attatchments/Day%203,%20Splunk%20Basics%20-%20Did%20you%20SIEM-05.12.25-paste.png)
 
 
 --- 
@@ -25,7 +25,7 @@ Using the query: `index=main sourcetype=web_traffic | timechart span=1d count | 
 
 **Output**
 
-![](AdventOfCyber%20Attatchments/Day%203,%20Splunk%20Basics%20-%20Did%20you%20SIEM?-05.12.25-paste-1.png)
+![](AdventOfCyber%20Attatchments/Day%203,%20Splunk%20Basics%20-%20Did%20you%20SIEM-05.12.25-paste-1.png)
 
 
 ---
@@ -38,7 +38,7 @@ Navigating to the `user_agent` field we can see that 'havij' has a count of 993.
 
 **Output**
 
-![](AdventOfCyber%20Attatchments/Day%203,%20Splunk%20Basics%20-%20Did%20you%20SIEM?-05.12.25-paste-2.png)
+![](AdventOfCyber%20Attatchments/Day%203,%20Splunk%20Basics%20-%20Did%20you%20SIEM-05.12.25-paste-2.png)
 
 
 ---
@@ -51,7 +51,7 @@ Navigating to the `user_agent` field we can see that 'havij' has a count of 993.
 
 **Output**
 
-![](AdventOfCyber%20Attatchments/Day%203,%20Splunk%20Basics%20-%20Did%20you%20SIEM?-05.12.25-paste-3.png)
+![](AdventOfCyber%20Attatchments/Day%203,%20Splunk%20Basics%20-%20Did%20you%20SIEM-05.12.25-paste-3.png)
 
 ---
 
@@ -63,5 +63,5 @@ Using the command `sourcetype=web_traffic client_ip="198.51.100.55" AND action="
 
 **Output**
 
-![](AdventOfCyber%20Attatchments/Day%203,%20Splunk%20Basics%20-%20Did%20you%20SIEM?-05.12.25-paste-4.png)
+![](AdventOfCyber%20Attatchments/Day%203,%20Splunk%20Basics%20-%20Did%20you%20SIEM-05.12.25-paste-4.png)
 
