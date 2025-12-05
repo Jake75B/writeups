@@ -12,7 +12,7 @@ This question involves going through the stages and reading the information pres
 
 **Output**
 
-![](AdventOfCyber%20Attatchments/Day%204,%20AI%20in%20Security%20-%20old%20sAInt%20nick-05.12.25-paste.png)
+![](AdventOfCyber%20Attatchments/Day%204,%20AI%20in%20Security%20-%20old%20sAInt%20nick-05.12.25-paste-1.png)
 
 ---
 
@@ -24,6 +24,6 @@ By taking the script from **stage 2: red team**, we can save it locally on our  
 
 **Output**
 
-![](AdventOfCyber%20Attatchments/Day%204,%20AI%20in%20Security%20-%20old%20sAInt%20nick-05.12.25-paste-3.png)
+![](AdventOfCyber%20Attatchments/Day%204,%20AI%20in%20Security%20-%20old%20sAInt%20nick-05.12.25-paste.png)
 
 
